@@ -5,9 +5,9 @@ using System;
 using System.ComponentModel;
 using System.Numerics;
 
-namespace Imusify.Contract
+namespace Imusify.SmartContract
 {
-    public class ImusifyContract : SmartContract
+    public class ImusifyContract : Neo.SmartContract.Framework.SmartContract
     {
         // params: 0710
         // return : 05
@@ -142,6 +142,16 @@ namespace Imusify.Contract
                     if (args.Length != 1) return false;
                     var targetAdress = (byte[])args[0];
                     return VestingAvailable(targetAdress);
+                }
+
+                #endregion
+
+                #region MIGRATION
+                else if (operation == "doMigration")
+                {
+                    if (args.Length != 1) return false;
+                    var newScript = (byte[])args[0];
+                    return DoMigration(newScript);
                 }
 
                 #endregion
@@ -957,5 +967,29 @@ namespace Imusify.Contract
 
         #endregion
 
+        #region MIGRATION
+
+        // Note: the new scripthash / address can be calculated off-chain based on the script bytecode
+        private static bool DoMigration(byte[] script)
+        {
+            if (!Runtime.CheckWitness(Company_Address))
+            {
+                return false;
+            }
+
+            byte[] parameter_list = { 0x07, 0x10 };
+            byte return_type = 5;
+            bool need_storage = true;
+            string name = "Imusify";
+            string version = "1.1";
+            string author = "imusify.io";
+            string email = "info@imusify.io";
+            string description = "Imusify Contract";
+
+            Contract.Migrate(script, parameter_list, return_type, need_storage, name, version, author, email, description);
+
+            return true;
+        }
+        #endregion
     }
 }

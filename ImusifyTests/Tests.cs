@@ -6,7 +6,7 @@ using System.Linq;
 using Neo.Lux.Core;
 using Neo.Lux.Utils;
 using Neo.Lux.Cryptography;
-using Imusify.Contract;
+using Imusify.SmartContract;
 using System.Diagnostics;
 using System.Numerics;
 using Neo.Lux.Debugger;
