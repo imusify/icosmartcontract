@@ -33,7 +33,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>neon.exe $(TargetDir)\PhantasmaContract.dll</PostBuildEvent>
+    <PostBuildEvent>neon.exe $(TargetDir)ImusifyContract.dll</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Neo.SmartContract.Framework, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">

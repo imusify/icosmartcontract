@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Numerics;
 
-namespace iMusify
+namespace Imusify.Contract
 {
     public class ImusifyContract : SmartContract
     {
@@ -335,8 +335,6 @@ namespace iMusify
 
         public const ulong token_individual_cap = 9000000 * imu_decimals; // max tokens than an individual can buy from in the crowdsale
 
-        public const uint ico_start_time = 1527379200; // 27 May 00h00 UTC
-
         [DisplayName("whitelist_add")]
         public static event Action<byte[]> OnWhitelistAdd;
 
@@ -643,16 +641,16 @@ namespace iMusify
             OnTransferred(null, addressScriptHash, amount);
         }
 
-        public const ulong stage_1_start = 1527818400;
-        public const ulong stage_2_start = 1530410400;
-        public const ulong stage_3_start = 1530576120;
-        public const ulong stage_4_start = 1531188000;
-        public const ulong stage_5_start = 1531792800;
-        public const ulong stage_6_start = 1532397600;
-        public const ulong sale_end = 1533002399;
+        public const uint stage_1_start = 1527818400;
+        public const uint stage_2_start = 1530410400;
+        public const uint stage_3_start = 1530576120;
+        public const uint stage_4_start = 1531188000;
+        public const uint stage_5_start = 1531792800;
+        public const uint stage_6_start = 1532397600;
+        public const uint sale_end = 1533002399;
 
         // how many tokens you get per NEO
-        private static BigInteger GetTokenSwapRate(uint timestamp)
+        public static BigInteger GetTokenSwapRate(uint timestamp)
         {
             if (timestamp > sale_end)
             {
