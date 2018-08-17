@@ -83,6 +83,13 @@ namespace Imusify.Contracts
                 }
                 #endregion
 
+                #region NEP10
+                else if (operation == "supportedStandards")
+                {
+                    return "{\"\NEP-5\", \"\NEP-10\"}";
+                }
+
+                #endregion
             }
 
             return false;
@@ -152,10 +159,10 @@ namespace Imusify.Contracts
         // This matches the ERC20 version
         public static bool TransferFrom(byte[] sender, byte[] from, byte[] to, BigInteger value)
         {
+            if (value <= 0) return false;
             if (!Runtime.CheckWitness(sender)) return false;
             if (!ValidateAddress(from)) return false;
             if (!ValidateAddress(to)) return false;
-            if (value <= 0) return false;
 
             BigInteger from_value = BalanceOf(from);
             if (from_value < value) return false;
