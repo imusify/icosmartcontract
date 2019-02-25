@@ -86,7 +86,7 @@ namespace Imusify.Contracts
                 #region NEP10
                 else if (operation == "supportedStandards")
                 {
-                    return "{\"\NEP-5\", \"\NEP-10\"}";
+                    return new string[] {"NEP-5" , "NEP-10"};
                 }
 
                 #endregion
