@@ -227,6 +227,8 @@ namespace Imusify.Contracts
             if (!Runtime.CheckWitness(Developers_Address))
                 return false;
 
+            if (!ValidateAddress(to)) return false;
+
             var current_total_supply = Storage.Get(Storage.CurrentContext, "totalSupply").AsBigInteger();
             if (current_total_supply != 0)
             {
